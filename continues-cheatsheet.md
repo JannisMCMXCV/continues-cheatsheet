@@ -22,3 +22,17 @@
   * https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
   * https://www.atlassian.com/git/tutorials/git-ssh
   * https://www.binance.com/en/my/settings/api-management
+
+## create rsa key pair for binance [for POSIX Systems]:
+1. create ssh key pair (this only formats the private key with the PKCS#8 format) (example)
+    ````
+    % ssh-keygen -t rsa -b 4096  -m PKCS8 -f <keyname>
+    ````
+2. convert public key to PKCS#8 format (example)
+    ```
+    % ssh-keygen -f <keyname>.pub -e -m PKCS8 > <converted filename>
+    ```
+### Notes:
+* Useful Links:
+  * https://binance-docs.github.io/apidocs/spot/en/#introduction
+  * https://www.binance.com/en/my/settings/api-management
