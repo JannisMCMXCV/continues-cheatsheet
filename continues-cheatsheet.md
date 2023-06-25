@@ -78,6 +78,6 @@
 1. Visit https://testnet.binance.vision/
 2. Log in with GitHub (GitHub account required)
 ![Authenticate with GitHub](./images/binance/binance-testnet/authenticate-with-github.png)
-3. Generate locally key pair (rsa between 2048 and 4096 byte or ed25519)
+3. Locally generate key pair (rsa between 2048 and 4096 byte or ed25519)
 4. registr public key
 ![Register public key](./images/binance/binance-testnet/register-public-key.png)
