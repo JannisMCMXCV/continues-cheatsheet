@@ -1,5 +1,43 @@
 # Computers, Programming & Stuff
 
+## Git
+### reanme branch: 
+
+````
+git branch -m <old> <new>`
+````
+
+## PostgreSQL
+
+* start db server:
+    * Environment Variable PGDATA festlegen (default [WINDOWS]: C:\Program Files\PostgreSQL\14\data)
+    ```
+    pg_ctl start -l logfile (startet db server im Hintergrung und schreibt loggs in "logfile")
+    ```
+
+* stop db server:
+    ```
+    pg_ctl stop
+    ```
+
+* check if running [WINDOWS]: 
+
+    * Alt1:
+        * WIN+R
+        * `services.msc`
+        * look for postgresql-[version]
+    * Alt2:
+        * fire up a terminal
+        * `pg_ctl status`
+
+* change pw:
+    ````
+    psql -U <username>
+    postgres=# \password <username>
+    Enter new password: <new-password>
+    postgres=# \q
+    ````
+
 ## key pairs with `openssl` [POSIX]
 
 ### generate rsa key pair
