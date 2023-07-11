@@ -159,3 +159,12 @@ git branch -m <old> <new>`
     ````
     % git config --global commit.gpgsign true
     ````
+
+## Markdown
+Pagebreak for generated PDFs: <br>
+wrap the section that shall be on a new Page in: 
+```
+<div style="page-break-after: always;">
+    Business as usual
+</div>
+```
