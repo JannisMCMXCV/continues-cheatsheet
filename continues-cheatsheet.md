@@ -159,3 +159,22 @@ git branch -m <old> <new>`
     ````
     % git config --global commit.gpgsign true
     ````
+
+## Markdown
+Pagebreak for generated PDFs: <br>
+wrap the section that shall be on a new Page in: 
+```
+<div style="page-break-after: always;">
+    Business as usual
+</div>
+```
+
+## Visual Studio
+### Shortcuts
+Action | Shortcut
+--- | ---
+Comment | `CTRL + K, STRG + C`
+Uncomment | `CTRL + K, STRG + U`
+Collapse all methods | `CTRL + M, CTRL + O`
+Expand all methods | `CTRL + M, CTRL + P`
+Collapse/expand selection | `CTRL + M, CTRL + M`
