@@ -169,10 +169,17 @@ wrap the section that shall be on a new Page in:
 </div>
 ```
 
+## Microsoft Windows
+
+### Shortcuts
+Action | Shortcut | Version
+-- | -- | --
+Emoji Keyboard | `WINDOWS + .` | 10 or newer
+
 ## Visual Studio
 ### Shortcuts
 Action | Shortcut
---- | ---
+-- | --
 Comment | `CTRL + K, STRG + C`
 Uncomment | `CTRL + K, STRG + U`
 Collapse all methods | `CTRL + M, CTRL + O`
