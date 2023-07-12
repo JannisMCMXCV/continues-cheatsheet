@@ -185,3 +185,162 @@ Uncomment | `CTRL + K, STRG + U`
 Collapse all methods | `CTRL + M, CTRL + O`
 Expand all methods | `CTRL + M, CTRL + P`
 Collapse/expand selection | `CTRL + M, CTRL + M`
+
+## Programming
+### Java stream API vs C# LINQ
+
+
+<table>
+<tr>
+  <th>Java</th>
+  <th>C#</th>
+  <th>Java Example</th>
+  <th>C# example</th>
+</tr>
+
+<tr>
+  <td><code>Collection.forEach(&lt;lambda&gt;)</code></td>
+  <td><code>Enumerable.ForEach(&lt;lambda&gt;)</code></td>
+<td>
+    
+
+```java
+List<String> strings = new ArrayList<>();
+strings.add("demo");
+strings.add("list");
+strings.add("of");
+strings.add("strings");
+
+// Print list entries
+strings.forEach(System.out::println);
+```
+
+</td>
+<td>
+    
+
+```c#
+List<string> strings = new List<string>
+{
+    "demo", "list", "of", "strings"
+};
+
+// Print list entries
+strings.ForEach(Console.WriteLine)
+```
+
+</td>
+</tr>
+
+<tr>
+  <td><code>Collection.stream().map(&lt;lambda&gt;)</code></td>
+  <td><code>Enumerable.Select(&lt;lambda&gt;)</code></td>
+<td>
+    
+
+```java
+List<String> strings = new ArrayList<>();
+strings.add("demo");
+strings.add("list");
+strings.add("of");
+strings.add("strings");
+
+// convert entries to upper case
+List<String> converted = strings.stream()
+        .map(str -> str.toUpperCase());
+        .collect(Collectors.toList());
+```
+
+</td>
+<td>
+    
+
+```c#
+List<string> strings = new List<string>
+{
+    "demo", "list", "of", "strings"
+};
+
+// convert entries to upper case
+List<string> converted = strings
+        .Select(str => str.ToUpper())
+        .ToList();
+```
+
+</td>
+</tr>
+
+<tr>
+  <td><code>Collection.stream().filter(&lt;lambda&gt;)</code></td>
+  <td><code>Enumerable.Where(&lt;lambda&gt;)</code></td>
+<td>
+    
+
+```java
+List<String> strings = new ArrayList<>();
+strings.add("demo");
+strings.add("list");
+strings.add("of");
+strings.add("strings");
+
+// filter for entries containing the letter 'i'
+List<String> filtered = strings.stream()
+        .filter(str -> str.contains("i"));
+        .collect(Collectors.toList());  // -> [list, strings]
+```
+
+</td>
+<td>
+    
+
+```c#
+List<string> strings = new List<string>
+{
+    "demo", "list", "of", "strings"
+};
+
+// filter for entries containing the letter 'i'
+List<string> filtered = strings
+        .Where(str => str.Contains("i"))
+        .ToList();  // -> [list, strings]
+```
+
+</td>
+</tr>
+
+<tr>
+  <td><code>Collection.stream().takeWhile(&lt;lambda&gt;)</code></td>
+  <td><code>Enumerable.TakeWhile(&lt;lambda&gt;)</code></td>
+<td>
+    
+
+```java
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+
+// take while number n == first entry or n is even
+List<Integer> takenNumbers = numbers.stream()
+        .takeWhile(n -> n.equals(numbers.get(0))  || n % 2 == 0)
+        .collect(Collectors.toList());  // -> [1, 2]
+```
+
+</td>
+<td>
+    
+
+```c#
+List<int> numbers = new List<int> { 1, 2, 3 };
+
+// take while number n == first entry or n is even
+List<int> takenNumbers = numbers
+        .TakeWhile((n, index) => index == 0 || n % 2 == 0)
+        .ToList();  // -> [1, 2]
+```
+
+</td>
+</tr>
+
+</table>
+
