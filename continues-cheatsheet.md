@@ -1,10 +1,10 @@
 # Computers, Programming & Stuff
 
 ## Git
-### reanme branch: 
+### rename branch: 
 
 ````
-git branch -m <old> <new>`
+git branch -m <old> <new>
 ````
 
 ## PostgreSQL
