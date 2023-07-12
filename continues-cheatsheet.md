@@ -180,8 +180,8 @@ Emoji Keyboard | `WINDOWS + .` | 10 or newer
 ### Shortcuts
 Action | Shortcut
 -- | --
-Comment | `CTRL + K, STRG + C`
-Uncomment | `CTRL + K, STRG + U`
+Comment | `CTRL + K, CTRL + C`
+Uncomment | `CTRL + K, CTRL + U`
 Collapse all methods | `CTRL + M, CTRL + O`
 Expand all methods | `CTRL + M, CTRL + P`
 Collapse/expand selection | `CTRL + M, CTRL + M`
