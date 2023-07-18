@@ -222,6 +222,20 @@ Action | Shortcut | Version
 -- | -- | --
 Emoji Keyboard | `WINDOWS + .` | 10 or newer
 
+### cmd, bat, etc...
+* Alternative name for a command:
+  1. create a *.bat file
+  2. 
+        ```bat
+        @echo off
+        set "NEW_COMMAND_NAME=C:\path\to\COMMAND_EXECUTABLE"
+        %NEW_COMMAND_NAME% %*
+        ```
+     * The `%NEW_COMMAND_NAME% %*` line executes the Maven command stored in the `NEW_COMMAND_NAME` variable, and `%*` passes any additional arguments to the executable.
+     * To find out where the executable is, run `where <executable>`
+  3. include the directory where your *.bat is located in your (user-level) `PATH` variable.
+  4. Use the new command: `new-command-name` in any Command Prompt.
+
 ## Visual Studio
 ### Shortcuts
 Action | Shortcut
