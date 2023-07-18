@@ -134,6 +134,30 @@ git branch -m <old> <new>
     ````
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     ````
+5. Tell git to sign commits
+   1. Fire up a local terminal
+   2. find the key ID of the previously generated Key
+    ````
+    % gpg --list-secret-keys --keyid-format=long
+    `````
+   3. From the list of GPG keys, copy the long form of the GPG key ID for the pubkic key you've added to gitHub. The GPG key ID looks something like `3CC7D39017658BD1` -> see this example:
+   ````
+    % gpg --list-secret-keys --keyid-format=long 
+    /Users/exampleuser/.gnupg/pubring.kbx
+    ------------------------------------
+    sec   rsa4096/3CC7D39017658BD1 2023-06-25 [SC]
+          BD2D9C59394D7F4F8680DEB80FA94B9E0B5C93C0
+    uid                 [ultimate] github <example@email.com>
+    ssb   rsa4096/CC50DC7499FF0A21 2023-06-25 [E]
+    ````
+    4. Set the GPG signing key ID in Git; In this example, the GPG key ID is `3CC7D39017658BD1`:
+    ```
+    % git config --global user.signingkey 3CC7D39017658BD1
+    ``` 
+    5. [optional] Configure Git to sign all commits by default:
+    ````
+    % git config --global commit.gpgsign true
+    ````
 ### Reanme branch: 
 
 `git branch -m <old> <new>`
@@ -181,30 +205,6 @@ git branch -m <old> <new>
     * Alt2: open C:\Program Files\Git\etc\gitconfig -> under `[core]` add `longpaths = true`
         * Admin rights may be required.
 
-1. Tell git to sign commits
-   1. Fire up a local terminal
-   2. find the key ID of the previously generated Key
-    ````
-    % gpg --list-secret-keys --keyid-format=long
-    `````
-   3. From the list of GPG keys, copy the long form of the GPG key ID for the pubkic key you've added to gitHub. The GPG key ID looks something like `3CC7D39017658BD1` -> see this example:
-   ````
-    % gpg --list-secret-keys --keyid-format=long 
-    /Users/exampleuser/.gnupg/pubring.kbx
-    ------------------------------------
-    sec   rsa4096/3CC7D39017658BD1 2023-06-25 [SC]
-          BD2D9C59394D7F4F8680DEB80FA94B9E0B5C93C0
-    uid                 [ultimate] github <example@email.com>
-    ssb   rsa4096/CC50DC7499FF0A21 2023-06-25 [E]
-    ````
-    4. Set the GPG signing key ID in Git; In this example, the GPG key ID is `3CC7D39017658BD1`:
-    ```
-    % git config --global user.signingkey 3CC7D39017658BD1
-    ``` 
-    5. [optional] Configure Git to sign all commits by default:
-    ````
-    % git config --global commit.gpgsign true
-    ````
 
 ## Markdown
 Pagebreak for generated PDFs: <br>
