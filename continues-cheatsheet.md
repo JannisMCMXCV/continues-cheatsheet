@@ -134,7 +134,6 @@ git branch -m <old> <new>
     ````
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     ````
-
 5. Tell git to sign commits
    1. Fire up a local terminal
    2. find the key ID of the previously generated Key
@@ -159,6 +158,53 @@ git branch -m <old> <new>
     ````
     % git config --global commit.gpgsign true
     ````
+### Reanme branch: 
+
+`git branch -m <old> <new>`
+
+### fetch remote branch other than master/main:
+
+* `git fetch origin`
+    > fetches all remote branches available 
+  
+* `git branch -v -a`
+
+    > shows all branches ready to checkout
+* -> checkout remote branch like:
+
+    `git checkout -b <branchname> origin/<branchname>`
+
+
+### Remote Repositories
+
+* Add remote repo:
+
+    `git remote add <repo name (best practise: origin)> <remote repository url>`
+
+
+* get remote repository origin url:
+
+    `git remote get-url origin`
+
+* change remote repository:
+
+    `git remote set-url origin <remote repository url>`
+
+* update forked repository: (the circuitous way)
+	```
+    git remote add upstream <REPO-URL>
+    git fetch upstream
+    git checkout <BRANCH>
+    git reset --hard upstream/<BRANCH>
+    git push origin <BRANCH> --force
+    ```
+
+* fix: unable to create file \<filename\>: Filename too long
+    * Alt1: `git config --system core.longpaths true`
+        * Admin rights may be required
+    * Alt2: open C:\Program Files\Git\etc\gitconfig -> under `[core]` add `longpaths = true`
+        * Admin rights may be required.
+
 
 ## Markdown
 Pagebreak for generated PDFs: <br>
@@ -175,6 +221,20 @@ wrap the section that shall be on a new Page in:
 Action | Shortcut | Version
 -- | -- | --
 Emoji Keyboard | `WINDOWS + .` | 10 or newer
+
+### cmd, bat, etc...
+* Alternative name for a command:
+  1. create a *.bat file
+  2. 
+        ```bat
+        @echo off
+        set "NEW_COMMAND_NAME=C:\path\to\COMMAND_EXECUTABLE"
+        %NEW_COMMAND_NAME% %*
+        ```
+     * The `%NEW_COMMAND_NAME% %*` line executes the Maven command stored in the `NEW_COMMAND_NAME` variable, and `%*` passes any additional arguments to the executable.
+     * To find out where the executable is, run `where <executable>`
+  3. include the directory where your *.bat is located in your (user-level) `PATH` variable.
+  4. Use the new command: `new-command-name` in any Command Prompt.
 
 ## Visual Studio
 ### Shortcuts
