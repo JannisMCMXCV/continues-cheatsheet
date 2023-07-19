@@ -404,3 +404,13 @@ List<int> takenNumbers = numbers
 
 </table>
 
+## MongoDB
+
+### cli: drop all tables
+```
+# mongo
+> show dbs
+> use <whatever db>
+> db.getCollectionNames().forEach(function(c) { if(c.indexOf("system.") == -1) db.getCollection(c).drop(); })
+> quit()
+```
