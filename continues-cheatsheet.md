@@ -414,3 +414,8 @@ List<int> takenNumbers = numbers
 > db.getCollectionNames().forEach(function(c) { if(c.indexOf("system.") == -1) db.getCollection(c).drop(); })
 > quit()
 ```
+
+## Apache Maven
+
+### find unused dependencies
+    # mvn dependency:analyze
