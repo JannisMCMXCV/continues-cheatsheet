@@ -1,11 +1,97 @@
 # Computers, Programming & Stuff
 
 ## Git
-### rename branch: 
 
+### rename branch: 
 ````
 git branch -m <old> <new>
 ````
+### GPG signed commits
+> Create verified commits<br>
+> #gpg #git #hithub
+
+1. Install GPG Suite from https://gpgtools.org
+2. Generate a new gpg key with GPG Keychain
+3. Save the public key somewhere you will find it!
+4. Add the public key to gitHub:
+   1. navigate to https://github.com/settings/keys
+   2. select [New GPG Key](https://github.com/settings/gpg/new)
+   3. Copy and paste the public key block; -> begins with:
+    ````
+    -----BEGIN PGP PUBLIC KEY BLOCK-----
+    ````
+5. Tell git to sign commits
+   1. Fire up a local terminal
+   2. find the key ID of the previously generated Key
+    ````
+    % gpg --list-secret-keys --keyid-format=long
+    `````
+   3. From the list of GPG keys, copy the long form of the GPG key ID for the pubkic key you've added to gitHub. The GPG key ID looks something like `3CC7D39017658BD1` -> see this example:
+   ````
+    % gpg --list-secret-keys --keyid-format=long 
+    /Users/exampleuser/.gnupg/pubring.kbx
+    ------------------------------------
+    sec   rsa4096/3CC7D39017658BD1 2023-06-25 [SC]
+          BD2D9C59394D7F4F8680DEB80FA94B9E0B5C93C0
+    uid                 [ultimate] github <example@email.com>
+    ssb   rsa4096/CC50DC7499FF0A21 2023-06-25 [E]
+    ````
+    4. Set the GPG signing key ID in Git; In this example, the GPG key ID is `3CC7D39017658BD1`:
+    ```
+    % git config --global user.signingkey 3CC7D39017658BD1
+    ``` 
+    5. [optional] Configure Git to sign all commits by default:
+    ````
+    % git config --global commit.gpgsign true
+    ````
+
+### fetch remote branch other than master/main:
+
+* `git fetch origin`
+    > fetches all remote branches available 
+  
+* `git branch -v -a`
+
+    > shows all branches ready to checkout
+* -> checkout remote branch like:
+
+    `git checkout -b <branchname> origin/<branchname>`
+
+### Remote Repositories
+
+* Add remote repo:
+
+    `git remote add <repo name (best practise: origin)> <remote repository url>`
+
+
+* get remote repository origin url:
+
+    `git remote get-url origin`
+
+* change remote repository:
+
+    `git remote set-url origin <remote repository url>`
+
+* update forked repository: (the circuitous way)
+	```
+    git remote add upstream <REPO-URL>
+    git fetch upstream
+    git checkout <BRANCH>
+    git reset --hard upstream/<BRANCH>
+    git push origin <BRANCH> --force
+    ```
+
+* fix: unable to create file \<filename\>: Filename too long
+    * Alt1: `git config --system core.longpaths true`
+        * Admin rights may be required
+    * Alt2: open C:\Program Files\Git\etc\gitconfig -> under `[core]` add `longpaths = true`
+        * Admin rights may be required.
+
+## GitHub
+### Code/PR Review
+* Collapse all files:<br>
+`ALT + Click` on any caret on the left of a file name
+![Collapse all files in GitHub](./images/github/github-collapse-all.png)
 
 ## PostgreSQL
 
@@ -116,94 +202,10 @@ git branch -m <old> <new>
 1. Visit https://testnet.binance.vision/
 2. Log in with GitHub (GitHub account required)
 ![Authenticate with GitHub](./images/binance/binance-testnet/authenticate-with-github.png)
-3. Locally generate key pair (rsa between 2048 and 4096 byte or ed25519)
-4. registr public key
+1. Locally generate key pair (rsa between 2048 and 4096 byte or ed25519)
+2. registr public key
 ![Register public key](./images/binance/binance-testnet/register-public-key.png)
 
-## git
-### GPG signed commits
-> Create verified commits<br>
-> #gpg #git #hithub
-1. Install GPG Suite from https://gpgtools.org
-2. Generate a new gpg key with GPG Keychain
-3. Save the public key somewhere you will find it!
-4. Add the public key to gitHub:
-   1. navigate to https://github.com/settings/keys
-   2. select [New GPG Key](https://github.com/settings/gpg/new)
-   3. Copy and paste the public key block; -> begins with:
-    ````
-    -----BEGIN PGP PUBLIC KEY BLOCK-----
-    ````
-5. Tell git to sign commits
-   1. Fire up a local terminal
-   2. find the key ID of the previously generated Key
-    ````
-    % gpg --list-secret-keys --keyid-format=long
-    `````
-   3. From the list of GPG keys, copy the long form of the GPG key ID for the pubkic key you've added to gitHub. The GPG key ID looks something like `3CC7D39017658BD1` -> see this example:
-   ````
-    % gpg --list-secret-keys --keyid-format=long 
-    /Users/exampleuser/.gnupg/pubring.kbx
-    ------------------------------------
-    sec   rsa4096/3CC7D39017658BD1 2023-06-25 [SC]
-          BD2D9C59394D7F4F8680DEB80FA94B9E0B5C93C0
-    uid                 [ultimate] github <example@email.com>
-    ssb   rsa4096/CC50DC7499FF0A21 2023-06-25 [E]
-    ````
-    4. Set the GPG signing key ID in Git; In this example, the GPG key ID is `3CC7D39017658BD1`:
-    ```
-    % git config --global user.signingkey 3CC7D39017658BD1
-    ``` 
-    5. [optional] Configure Git to sign all commits by default:
-    ````
-    % git config --global commit.gpgsign true
-    ````
-### Reanme branch: 
-
-`git branch -m <old> <new>`
-
-### fetch remote branch other than master/main:
-
-* `git fetch origin`
-    > fetches all remote branches available 
-  
-* `git branch -v -a`
-
-    > shows all branches ready to checkout
-* -> checkout remote branch like:
-
-    `git checkout -b <branchname> origin/<branchname>`
-
-
-### Remote Repositories
-
-* Add remote repo:
-
-    `git remote add <repo name (best practise: origin)> <remote repository url>`
-
-
-* get remote repository origin url:
-
-    `git remote get-url origin`
-
-* change remote repository:
-
-    `git remote set-url origin <remote repository url>`
-
-* update forked repository: (the circuitous way)
-	```
-    git remote add upstream <REPO-URL>
-    git fetch upstream
-    git checkout <BRANCH>
-    git reset --hard upstream/<BRANCH>
-    git push origin <BRANCH> --force
-    ```
-
-* fix: unable to create file \<filename\>: Filename too long
-    * Alt1: `git config --system core.longpaths true`
-        * Admin rights may be required
-    * Alt2: open C:\Program Files\Git\etc\gitconfig -> under `[core]` add `longpaths = true`
-        * Admin rights may be required.
 
 
 ## Markdown
@@ -404,3 +406,18 @@ List<int> takenNumbers = numbers
 
 </table>
 
+## MongoDB
+
+### cli: drop all tables
+```
+# mongo
+> show dbs
+> use <whatever db>
+> db.getCollectionNames().forEach(function(c) { if(c.indexOf("system.") == -1) db.getCollection(c).drop(); })
+> quit()
+```
+
+## Apache Maven
+
+### find unused dependencies
+    # mvn dependency:analyze
