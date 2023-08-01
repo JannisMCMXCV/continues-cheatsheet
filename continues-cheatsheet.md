@@ -16,7 +16,7 @@ git branch -m <old> <new>
 4. Add the public key to gitHub:
    1. navigate to https://github.com/settings/keys
    2. select [New GPG Key](https://github.com/settings/gpg/new)
-   3. Copy and paste the public key block; -> begins with:
+   3. Copy and paste the public key block; &rarr; begins with:
     ````
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     ````
@@ -26,7 +26,7 @@ git branch -m <old> <new>
     ````
     % gpg --list-secret-keys --keyid-format=long
     `````
-   3. From the list of GPG keys, copy the long form of the GPG key ID for the pubkic key you've added to gitHub. The GPG key ID looks something like `3CC7D39017658BD1` -> see this example:
+   3. From the list of GPG keys, copy the long form of the GPG key ID for the pubkic key you've added to gitHub. The GPG key ID looks something like `3CC7D39017658BD1` &rarr; see this example:
    ````
     % gpg --list-secret-keys --keyid-format=long 
     /Users/exampleuser/.gnupg/pubring.kbx
@@ -88,7 +88,7 @@ git branch -m <old> <new>
   git config --system core.longpaths true`
   ```
     * Admin rights may be required
-* **Alt2**: open C:\Program Files\Git\etc\gitconfig -> under `[core]` add `longpaths = true`
+* **Alt2**: open C:\Program Files\Git\etc\gitconfig &rarr; under `[core]` add `longpaths = true`
     * Admin rights may be required.
 
 ### Checkout specific commit
@@ -176,7 +176,7 @@ git branch -m <old> <new>
     ````
     % ssh-keygen -t rsa -b 4096 -f <keyname>
     ````
-2. [optional] convert key format (example) -> e.g., to use rsa public key with PKCS8 format
+2. [optional] convert key format (example) &rarr; e.g., to use rsa public key with PKCS8 format
     ```
     % ssh-keygen -f <keyname>.pub -e -m PKCS8 > <converted filename>
     ```
@@ -450,6 +450,9 @@ Open Element Properties | `Alt + ENTER` | Element must be selectred
 Rename Element | `F2` | Element must be selected
 Show Toolbox | `Alt + 5` | Diagram must be opened
 
+### Lock/Unlock Diagram
+Right-click on the background of open diagram &rarr; Toggle `Lock Diagram`
+
 ### Find EA-Elenets using SQL
 1. Navigate to 'Find in Project' (Press `Strg + F` or navigate `Start Ribbon > Search > Search in Model`) <br>
 ![find-in-project](./images/EnterpriseArchitect/find-in-project.png)<br>
@@ -490,7 +493,7 @@ Show Toolbox | `Alt + 5` | Diagram must be opened
     3.1 Use (or create) a random Diagram that is in the same package as the item to be reviewed.<br>
     3.2 Create a Review Artifact as described above<br>
     3.3 Carry out the review as usual<br>
-    3.4 Delete the Review Artifact from the diagram -> it will still remain in the package<br>
+    3.4 Delete the Review Artifact from the diagram &rarr; it will still remain in the package<br>
     (3.5 if a new "helper diagram" has been created for this purpose, it can be deleted)
 
 #### **Compare two architecture versions (Delta Review)**
@@ -505,7 +508,7 @@ Show Toolbox | `Alt + 5` | Diagram must be opened
 1. Now open the current version in EA
 2. Navigate to `Publish Ribbon > Model Exchange > Package Control > Compare Package to XMI`<br>
 ![compare-to-xmi](./images/EnterpriseArchitect/compare-to-xmi.png)
-1. Import the previously exported (Step 2) xml file (If the entire model was exportet in Step 2 this will be time consuming) *[Note] If a incompatible XMI Version was used now a warning with a pointer to the correct version would appear -> in this case go back to step 2 and re-export the baseline with the correct XMI version*
+1. Import the previously exported (Step 2) xml file (If the entire model was exportet in Step 2 this will be time consuming) *[Note] If a incompatible XMI Version was used now a warning with a pointer to the correct version would appear &rarr; in this case go back to step 2 and re-export the baseline with the correct XMI version*
 2. On the left side all changed files are to be found; on the right-hand side, the changes are displayed in a table. the current version is in the left-hand column, the baseline version is in the right-hand column.
 ![baseline-comparison](./images/EnterpriseArchitect/baseline-comparison.png)
 
@@ -513,7 +516,7 @@ Show Toolbox | `Alt + 5` | Diagram must be opened
 1. **Using the "Reviews-Section" (prefered way)**<br>
     1.1 Navigate to `Start Ribbon > Today > Reviews > Manage Reviews`<br>
     ![manage-reviews](./images/EnterpriseArchitect/manage-reviews.png)<br>
-    1.2 To reveal the review Artifact in diagram or project browser: `right click` -> *select the appropriate*
+    1.2 To reveal the review Artifact in diagram or project browser: `right click` &rarr; *select the appropriate*
     ![review-location](./images/EnterpriseArchitect/find-review-location.png)
 2. **Using SQL to find diagrams with Review Items:**
 > see [Find EA-Elenets using SQL](#find-ea-elenets-using-sql)
