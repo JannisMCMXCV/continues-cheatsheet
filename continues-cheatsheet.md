@@ -91,6 +91,12 @@ git branch -m <old> <new>
 * **Alt2**: open C:\Program Files\Git\etc\gitconfig -> under `[core]` add `longpaths = true`
     * Admin rights may be required.
 
+### Checkout specific commit
+    % git log --oneline
+> find commit hash to check out
+
+    % git checkout <commit-hash>
+
 ## GitHub
 ### Code/PR Review
 * Collapse all files:<br>
@@ -210,6 +216,13 @@ git branch -m <old> <new>
 2. registr public key
 ![Register public key](./images/binance/binance-testnet/register-public-key.png)
 
+### adding ssh key to ssh-agent [WINDOWS]
+    % eval "$(ssh-agent)"
+    % ssh-add path/to/private_key
+
+### adding ssh key to ssh-agent [POSIX]
+    % eval `ssh-agent`
+    % ssh-add path/to/private_key
 
 
 ## Markdown
