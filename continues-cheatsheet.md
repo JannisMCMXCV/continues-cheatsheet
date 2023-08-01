@@ -438,3 +438,102 @@ List<int> takenNumbers = numbers
 
 ### find unused dependencies
     # mvn dependency:analyze
+
+## Enterprise Architect
+### Shortcuts:
+Action | shortcut | Note
+--|--|--
+Reveal Element in Project Browser | `Alt + G` | Element (E.g. on diagram) must be selected
+Reveal Diagram in Project Browser (from open diagram) | `SHIFT + Alt + G`
+Edit Element Attributes | `F9` | Element must be selected (especially useful with class/interface Elements)
+Open Element Properties | `Alt + ENTER` | Element must be selectred
+Rename Element | `F2` | Element must be selected
+Show Toolbox | `Alt + 5` | Diagram must be opened
+
+### Find EA-Elenets using SQL
+1. Navigate to 'Find in Project' (Press `Strg + F` or navigate `Start Ribbon > Search > Search in Model`) <br>
+![find-in-project](./images/EnterpriseArchitect/find-in-project.png)<br>
+2. Define SQL queries<br>
+    a. Create a new Search<br>
+    b. Give it a name<br>
+    c. Select "SQL Editor"<br>
+    ![create-new-search](./images/EnterpriseArchitect/create-new-search.png)<br>
+    d. Write Sql Queries <br>
+      d.1. If SQL Editor doesn't show up: press the "note-with-pen"-Symbol<br>
+      ![create-new-search](./images/EnterpriseArchitect/open-sql-editor.png)<br><br>
+3. [Exkurs] *"popular"* tables<br>
+    content | table_name
+    --|--
+    Diagramms | `t_diagram`
+    Architecture Elements | `t_object`
+    Packages/Directories | `t_package` <br>
+
+    NOTE: The database schema is poorly documented but the SQL-Editor has code compleation, which can give useful hints on which tables and columns are available. It can be triggered pressing `Strg + SPACE`
+4. Query pattern for Results linked with the corresponding element in the model
+    ```sql
+    SELECT <table_name>.ea_guid AS CLASSGUID, <table_name>.<table_type> AS CLASSTYPE [, '<table_name>' AS CLASSTABLE] ... 
+    ```
+5. Example: Query to find unagreed sequence diagrams (BorgWarner Porsche eTurbo specific)
+    ```sql
+    SELECT t_diagram.ea_guid AS CLASSGUID, 't_diagram' as CLASSTABLE, t_diagram.Diagram_Type AS CLASSTYPE, t_diagram.Name as Name, t_diagram.Diagram_Type as Type, t_package.Name AS Pkg
+    FROM t_diagram, t_package
+    WHERE (t_diagram.Package_ID = t_package.Package_ID) AND t_diagram.Diagram_Type LIKE "sequence" AND t_diagram.Version NOT LIKE '*agreed*'
+    ```
+### Architektur Reviews
+#### **Conducting the Review:**
+1. Open the Diagram to be Reviewed
+2. Use the "Review" Artifact from the Toolbox pane for review remarks<br>
+![review-artifact](./images/EnterpriseArchitect/review-artifact.png)<br>
+    2.1 If toolbox pane is not visible, reveal it with `Alt + 5` or find it within `Design Ribbon > Diagram > Toolbox`<br>
+    ![reveal-toolbox](./images/EnterpriseArchitect/reveal-toolbox.png)
+3. [Edge case] Review Items that are not on a Diagram:<br>
+    3.1 Use (or create) a random Diagram that is in the same package as the item to be reviewed.<br>
+    3.2 Create a Review Artifact as described above<br>
+    3.3 Carry out the review as usual<br>
+    3.4 Delete the Review Artifact from the diagram -> it will still remain in the package<br>
+    (3.5 if a new "helper diagram" has been created for this purpose, it can be deleted)
+
+#### **Compare two architecture versions (Delta Review)**
+1. Open a previous (baseline) verison to compare with in EA
+2. Navigate to `Publish Ribbon > Model Exchange > Export XMI > Export XMI...`<br>
+   ![export-to-xmi](./images/EnterpriseArchitect/export-to-xmi.png)<br>
+  a. Chose a package to export (Caution, exporting the entire model may be time consuming)<br>
+  b. Chose an appropriate location and name<br>
+  c. Select the corresponding XMI Type (For EA 13.5 it is XMI1.1, *[Note] The required version will be determined at the latest when the comparison is about to be made.*)<br>
+  d. Hit *Export*<br>
+    ![export-xmi](./images/EnterpriseArchitect/export-xmi.png)<br>
+1. Now open the current version in EA
+2. Navigate to `Publish Ribbon > Model Exchange > Package Control > Compare Package to XMI`<br>
+![compare-to-xmi](./images/EnterpriseArchitect/compare-to-xmi.png)
+1. Import the previously exported (Step 2) xml file (If the entire model was exportet in Step 2 this will be time consuming) *[Note] If a incompatible XMI Version was used now a warning with a pointer to the correct version would appear -> in this case go back to step 2 and re-export the baseline with the correct XMI version*
+2. On the left side all changed files are to be found; on the right-hand side, the changes are displayed in a table. the current version is in the left-hand column, the baseline version is in the right-hand column.
+![baseline-comparison](./images/EnterpriseArchitect/baseline-comparison.png)
+
+#### **Finding Review Remarks**
+1. **Using the "Reviews-Section" (prefered way)**<br>
+    1.1 Navigate to `Start Ribbon > Today > Reviews > Manage Reviews`<br>
+    ![manage-reviews](./images/EnterpriseArchitect/manage-reviews.png)<br>
+    1.2 To reveal the review Artifact in diagram or project browser: `right click` -> *select the appropriate*
+    ![review-location](./images/EnterpriseArchitect/find-review-location.png)
+2. **Using SQL to find diagrams with Review Items:**
+> see [Find EA-Elenets using SQL](#find-ea-elenets-using-sql)
+
+> DISCLAIMER: 
+> The following finds diarams with Review Elements. There may be Review Elements that are not on a Diagram. To find these the query must be adjusted. 
+```sql
+SELECT
+    t_diagram.ea_guid AS CLASSGUID,
+    't_diagram' as CLASSTABLE,
+    t_diagram.Diagram_Type AS CLASSTYPE
+    t_diagram.Name AS [Name],
+    t_diagram.Diagram_Type AS [Type],
+    t_diagram.Author, t_diagram.Version,
+    t_diagram.ModifiedDate
+FROM
+    t_diagram, t_object, t_diagramobjects
+WHERE
+    t_diagram.Diagram_ID = t_diagramobjects.Diagram_ID
+    AND t_diagramobjects.Object_ID = t_object.Object_ID
+    AND t_object.Stereotype = "EAReview"
+    AND NOT t_diagram.Diagram_Type = 'Custom'
+```
