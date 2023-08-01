@@ -47,30 +47,31 @@ git branch -m <old> <new>
 
 ### fetch remote branch other than master/main:
 
-* `git fetch origin`
-    > fetches all remote branches available 
+    git fetch origin
+
+> fetches all remote branches available 
   
-* `git branch -v -a`
+    % git branch -v -a
 
-    > shows all branches ready to checkout
-* -> checkout remote branch like:
+> shows all branches ready to checkout<br>
+> &rarr; checkout remote branch like:
 
-    `git checkout -b <branchname> origin/<branchname>`
+    % git checkout -b <branchname> origin/<branchname>
 
 ### Remote Repositories
 
 * Add remote repo:
 
-    `git remote add <repo name (best practise: origin)> <remote repository url>`
+        % git remote add <repo name (best practise: origin)> <remote repository url>
 
 
 * get remote repository origin url:
 
-    `git remote get-url origin`
+        % git remote get-url origin
 
 * change remote repository:
 
-    `git remote set-url origin <remote repository url>`
+        % git remote set-url origin <remote repository url>
 
 * update forked repository: (the circuitous way)
 	```
@@ -81,11 +82,14 @@ git branch -m <old> <new>
     git push origin <BRANCH> --force
     ```
 
-* fix: unable to create file \<filename\>: Filename too long
-    * Alt1: `git config --system core.longpaths true`
-        * Admin rights may be required
-    * Alt2: open C:\Program Files\Git\etc\gitconfig -> under `[core]` add `longpaths = true`
-        * Admin rights may be required.
+### fix: unable to create file \<filename\>: Filename too long
+* **Alt1**: 
+  ```
+  git config --system core.longpaths true`
+  ```
+    * Admin rights may be required
+* **Alt2**: open C:\Program Files\Git\etc\gitconfig -> under `[core]` add `longpaths = true`
+    * Admin rights may be required.
 
 ## GitHub
 ### Code/PR Review
@@ -157,9 +161,9 @@ git branch -m <old> <new>
 > * Useful Links:
 >   * https://testnet.binance.vision
 
-## ssh key pairs with `ssh-keygen` [POSIX]
+## ssh
 
-### generate ssh key pair
+### generate ssh key pair [POSIX]
 
 > #ssh #encryption #encoding #POSIX #github
 1. generate ssh key pair (example)
