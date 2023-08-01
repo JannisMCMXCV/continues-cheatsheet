@@ -450,6 +450,9 @@ Open Element Properties | `Alt + ENTER` | Element must be selectred
 Rename Element | `F2` | Element must be selected
 Show Toolbox | `Alt + 5` | Diagram must be opened
 
+### Lock/Unlock Diagram
+Right-click on the background of open diagram &rarr; Toggle `Lock Diagram`
+
 ### Find EA-Elenets using SQL
 1. Navigate to 'Find in Project' (Press `Strg + F` or navigate `Start Ribbon > Search > Search in Model`) <br>
 ![find-in-project](./images/EnterpriseArchitect/find-in-project.png)<br>
