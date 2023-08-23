@@ -265,6 +265,13 @@ Collapse all methods | `CTRL + M, CTRL + O`
 Expand all methods | `CTRL + M, CTRL + P`
 Collapse/expand selection | `CTRL + M, CTRL + M`
 
+### autogenerate equals and hashcode (Visual Studio, Windows (only!), C#)
+1. place cursor (caret) on class definition
+2. `CTRL + .`
+3. Select "Generate Equals and GetHashCode..."
+
+![Alt text](./images/VisualStudio/GenerateEqualsAndGetHashCode.png)
+
 ## Programming
 ### Java stream API vs C# LINQ
 
