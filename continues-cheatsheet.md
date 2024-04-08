@@ -547,3 +547,13 @@ WHERE
     AND t_object.Stereotype = "EAReview"
     AND NOT t_diagram.Diagram_Type = 'Custom'
 ```
+
+# Mac
+## switch between bash and zsh:
+zsh: run
+`chsh -s /bin/zsh`.
+restart shell
+
+bash: run
+`chsh -s /bin/bash`.
+restart shell
