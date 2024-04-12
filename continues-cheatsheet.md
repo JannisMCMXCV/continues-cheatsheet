@@ -547,7 +547,6 @@ WHERE
     AND t_object.Stereotype = "EAReview"
     AND NOT t_diagram.Diagram_Type = 'Custom'
 ```
-
 ## Databases
 ### Normalization (according to [[Video]](https://youtu.be/GFQaEYEc8_8?si=CpgF5af_jgqz7JJT))
 1. Normal Form (1NF)
@@ -594,4 +593,14 @@ WHERE
   <td><code>DELETE FROM users<br>WHERE active = 0;</code></td>
   <td><code>FOR user IN users<br>FILTER user.active == 0 <br>REMOVE user IN users</code></td>
 </tr>
+  
+# Mac
+## switch between bash and zsh:
+zsh: run
+`chsh -s /bin/zsh`.
+restart shell
+
+bash: run
+`chsh -s /bin/bash`.
+restart shell
 
