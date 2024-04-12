@@ -547,7 +547,53 @@ WHERE
     AND t_object.Stereotype = "EAReview"
     AND NOT t_diagram.Diagram_Type = 'Custom'
 ```
+## Databases
+### Normalization (according to [[Video]](https://youtu.be/GFQaEYEc8_8?si=CpgF5af_jgqz7JJT))
+1. Normal Form (1NF)
+   * Using row order to convey Information violates 1NF!
+   * Be Explicite! -> introduce Columns that can be used to sort the data in the expected way!
+   * Only one datatype per column!
+   * 
 
+### ArangoDB (MultiModel DB)
+#### SQL vs. AQL
+
+<table>
+<tr>
+  <th>SQL</th>
+  <th>AQL</th>
+</tr>
+
+<tr>
+  <td><code>INSERT INTO users<br>(name, active)<br>VALUES ("John Doe", 1);</code></td>
+  <td><code>INSERT<br>{ name: "John Doe", active: 1 }<br>INTO users</code></td>
+</tr>
+
+<tr>
+  <td><code>SELECT *<br>FROM users;</code></td>
+  <td><code>FOR user IN users<br>RETURN user</code></td>
+</tr>
+
+<tr>
+  <td><code>SELECT name<br>FROM users;</code></td>
+  <td><code>FOR user IN users<br>RETURN user.name</code></td>
+</tr>
+
+<tr>
+  <td><code>SELECT name<br>FROM users<br>WHERE active = 1;</code></td>
+  <td><code>FOR user IN users<br>FILTER user.active == 1<br>RETURN user.name</code></td>
+</tr>
+
+<tr>
+  <td><code>UPDATE users<br>SET name = "John Smith"<br>WHERE id = 1;</code></td>
+  <td><code>UPDATE { _key: "1" }<br>WITH { name: "John Smith" } <br>IN users</code></td>
+</tr>
+
+<tr>
+  <td><code>DELETE FROM users<br>WHERE active = 0;</code></td>
+  <td><code>FOR user IN users<br>FILTER user.active == 0 <br>REMOVE user IN users</code></td>
+</tr>
+  
 # Mac
 ## switch between bash and zsh:
 zsh: run
@@ -557,3 +603,4 @@ restart shell
 bash: run
 `chsh -s /bin/bash`.
 restart shell
+
