@@ -97,6 +97,10 @@ git branch -m <old> <new>
 
     % git checkout <commit-hash>
 
+### git log
+log commit hash only:
+`git log --oneline`
+
 ## GitHub
 ### Code/PR Review
 * Collapse all files:<br>
