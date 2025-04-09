@@ -97,6 +97,10 @@ git branch -m <old> <new>
 
     % git checkout <commit-hash>
 
+### git log
+log commit hash only:
+`git log --oneline`
+
 ## GitHub
 ### Code/PR Review
 * Collapse all files:<br>
@@ -192,6 +196,25 @@ git branch -m <old> <new>
 >   * https://www.atlassian.com/git/tutorials/git-ssh
 >   * https://www.binance.com/en/my/settings/api-management
 
+### adding ssh key to ssh-agent [WINDOWS]
+    % eval "$(ssh-agent)"
+    % ssh-add path/to/private_key
+
+### adding ssh key to ssh-agent [POSIX]
+    % eval `ssh-agent`
+    % ssh-add path/to/private_key
+
+### using ssh-key for authentication on servers/remote devices
+- on the remote device, copy public ssh key (e.g. `id_rsa.pub`) to a new line in `~/.ssh/authorized_keys`
+- on your local device find or create the file `~/.ssh/config`
+- add the following:
+    
+        Host your_server_alias
+            HostName server_ip_or_domain
+            User your_username
+            IdentityFile ~/.ssh/id_rsa
+            IdentitiesOnly yes
+
 ### utilize ssh-keygen pair for binance:
 
 > #binance
@@ -215,14 +238,6 @@ git branch -m <old> <new>
 1. Locally generate key pair (rsa between 2048 and 4096 byte or ed25519)
 2. registr public key
 ![Register public key](./images/binance/binance-testnet/register-public-key.png)
-
-### adding ssh key to ssh-agent [WINDOWS]
-    % eval "$(ssh-agent)"
-    % ssh-add path/to/private_key
-
-### adding ssh key to ssh-agent [POSIX]
-    % eval `ssh-agent`
-    % ssh-add path/to/private_key
 
 
 ## Markdown
